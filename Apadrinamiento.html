@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <P><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apadrinamiento</title>
+    <style>
+        /* Estilos para el menú de búsqueda */
+        .search-menu {
+            list-style-type: none;
+            margin: 1;
+            padding: 1;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .search-menu li {
+            float: left;
+            border-right: 10px solid #ddd;
+        }
+
+        .search-menu li:last-child {
+            border-right: none;
+        }
+
+        .search-menu li a {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .search-menu li a:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <body>
+     <ul class="search-menu">
+     <li><a Style="color:Green;"href="index.html">Inicio</a></li>
+     <li><a Style="color:Green;"href="Conocenos.html">Conocenos</a></li>
+     <li><a Style="color:Green;"href="Quienes%20Somos.html">Quienes Somos</a></li> 
+     <li><a Style="color:Green;"href="Que%20Hacemos.html">Que Hacemos</a></li> 
+     <li><a Style="color:Green;"href="Redes%20Sociales.html">Redes Sociales</a></li> 
+     <li><a Style="color:Green;"href="Donaciones.html">Donaciones</a></li> 
+     <li><a Style="color:Green;"href="Apadrinamiento.html">Apadrinar</a></li> 
+     <li><a Style="color:Green;"href="Ubicacion.html">Ubicacion</a></li>
+     <li><a Style="color:Green;"href="Anexos.html">Anexos</a></li>
+
+
+</ul>
+</body>
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Apadrinamiento</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .container {
+            padding: 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #areaBloqueada {
+            display: none;
+        }
+        #listaRegistros {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #listaRegistros li {
+            margin-bottom: 10px;
+        }
+        .action-buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://static.guiaongs.org/wp-content/uploads/2016/05/Apadrinamiento.jpg" alt="Imagen de fondo" class="background-image">
+    <div class="container">
+        <form id="apadrinamientoForm">
+            <P><label for="nombre">Nombre:</label></P>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono"><br><br>
+            
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea><br><br>
+            
+            <button type="button" onclick="guardarRegistro()">Enviar</button>
+        </form>
+
+        <!-- Área bloqueada -->
+        <div id="areaBloqueada">
+            <h2>Área Bloqueada</h2>
+            <p>Por favor, ingresa la contraseña para acceder a los registros:</p>
+            <input type="password" id="password">
+            <button onclick="verificarContraseña()">Ingresar</button>
+        </div>
+
+        <!-- Lista de registros guardados -->
+        <h2>Registros Guardados</h2>
+        <ul id="listaRegistros">
+            <!-- Los registros se agregarán aquí dinámicamente -->
+        </ul>
+        <div class="action-buttons">
+            <button onclick="eliminarRegistros()">Eliminar registros</button>
+            <button onclick="salir()">Salir</button>
+        </div>
+    </div>
+
+    <script>
+        var registros = []; // Array para almacenar los registros
+
+        function guardarRegistro() {
+            // Obtener valores del formulario
+            var nombre = document.getElementById("nombre").value;
+            var email = document.getElementById("email").value;
+            var telefono = document.getElementById("telefono").value;
+            var mensaje = document.getElementById("mensaje").value;
+
+            // Crear un objeto para el nuevo registro
+            var nuevoRegistro = {
+                nombre: nombre,
+                email: email,
+                telefono: telefono,
+                mensaje: mensaje
+            };
+
+            // Agregar el nuevo registro al array de registros
+            registros.push(nuevoRegistro);
+
+            // Limpiar el formulario después de guardar el registro
+            document.getElementById("apadrinamientoForm").reset();
+
+            // Mostrar el área bloqueada después de guardar el registro
+            document.getElementById("areaBloqueada").style.display = "block";
+        }
+
+        function verificarContraseña() {
+            var contraseña = "Ramos2005"; // Cambiar por tu propia contraseña
+            var contraseñaIngresada = document.getElementById("password").value;
+
+            if (contraseñaIngresada === contraseña) {
+                mostrarRegistros();
+            } else {
+                alert("Contraseña incorrecta. Por favor, intenta de nuevo.");
+            }
+        }
+
+        function mostrarRegistros() {
+            var listaRegistros = document.getElementById("listaRegistros");
+            listaRegistros.innerHTML = ""; // Limpiar la lista antes de mostrar los registros
+
+            // Recorrer los registros y mostrarlos en la lista
+            registros.forEach(function(registro) {
+                var nuevoItem = document.createElement("li");
+                nuevoItem.innerHTML = "<strong>Nombre:</strong> " + registro.nombre + "<br>" +
+                                      "<strong>Email:</strong> " + registro.email + "<br>" +
+                                      "<strong>Teléfono:</strong> " + registro.telefono + "<br>" +
+                                      "<strong>Mensaje:</strong> " + registro.mensaje + "<br><hr>";
+                listaRegistros.appendChild(nuevoItem);
+            });
+        }
+
+        function eliminarRegistros() {
+            registros = []; // Vaciar el array de registros
+            mostrarRegistros(); // Actualizar la lista de registros en la interfaz
+            alert("Todos los registros han sido eliminados.");
+        }
+
+        function salir() {
+            document.getElementById("areaBloqueada").style.display = "none";
+            alert("Has salido del área de registros.");
+        }
+    </script>
+</body>
+</html>
